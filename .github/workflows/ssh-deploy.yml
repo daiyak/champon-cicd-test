@@ -14,7 +14,7 @@
                 key: ${{ secrets.DAIYADEV_SECRET_KEY }}
                 script: |
                   whoami
-                  cd ~/champon-cicd-test
+                  cd ~/sandbox/champon-cicd-test
                   pwd
                   docker-compose down
                   git pull

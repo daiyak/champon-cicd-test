@@ -1,0 +1,21 @@
+---
+    name: CD test and Docker build
+    on: push
+    
+    jobs:
+        build:
+            runs-on: ubuntu-latest
+            steps:
+            - name: CD test
+              uses: appleboy/ssh-action@master
+              with:
+                host: ${{ secrets.DAIYADEV_HOST }}
+                username: ${{ secrets.DAIYADEV_USER }}
+                key: ${{ secrets.DAIYADEV_SECRET_KEY }}
+                script: |
+                  whoami
+                  cd ~/champon-cicd-test
+                  pwd
+                  docker-compose down
+                  git pull
+                  docker-compose up --build -d
